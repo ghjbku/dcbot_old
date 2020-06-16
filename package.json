@@ -1,0 +1,27 @@
+{
+  "name": "dcbot-master",
+  "version": "1.0.0",
+  "description": "gitbot",
+  "main": "windy.js",
+  "dependencies": {
+    "discord.js": "^11.6.4",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "w!help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghjbku/dcbot.git"
+  },
+  "keywords": [
+    "gitbot"
+  ],
+  "author": "Windsake",
+  "license": "CC-BY-4.0",
+  "bugs": {
+    "url": "https://github.com/ghjbku/dcbot/issues"
+  },
+  "homepage": "https://github.com/ghjbku/dcbot#readme"
+}
