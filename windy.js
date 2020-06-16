@@ -4,7 +4,7 @@ var client = new discord.Client();
 //var matek=require("./commands/math.js");
 //var windshit=require("./commands/windshit.js");
 //var sudo=require("./commands/sudo.js");
-const token = "NTQyNjY1MTEwNzI0OTM1Njgx.XbB50g.S0Rhg__4Z8_U7Qu2f2RriG3xQ1c";
+const token = "put your discord token here";
 const Http = require('https');
 const fs = require('fs');
 const fetch = require("node-fetch");
@@ -165,54 +165,26 @@ const prefix = "w!";
 client.on("message", (message) => {
 if (message.author.bot) return;
 
-function admin()//ege                                         //lala
-{if(message.author.id=="283645221168742400"||message.author.id=="499743260789440517"||message.author.id=="378209607434371072")
+function admin()
+{if(message.author.id=="000"||message.author.id=="0001"||message.author.id=="0002")
 return true;}
 
 function isowner() {
-  if(message.author.id=="215383208655585283")
+  if(message.author.id=="00011")
   return true;
   else return false;}
-function ismoni(){
-    if(message.author.id=="378209607434371072")
-    return true;
-    else return false;}
 
   function tru(){
-    if(message.member.roles.find(r=>r.name === "Windy")||message.member.roles.find(r=>r.name ==="Fraccion")||message.member.roles.find(r=>r.name ==="Espada")||message.member.roles.find(r=>r.name ==="Admin")||message.member.roles.find(r=>r.name ==="Moderator")){
+    if(message.member.roles.find(r=>r.name ==="Fraccion")||message.member.roles.find(r=>r.name ==="Espada")||message.member.roles.find(r=>r.name ==="Admin")||message.member.roles.find(r=>r.name ==="Moderator")){
       return true;}
-    if(message.member.roles.find(r=>r.name ==="Fraccion")||message.member.roles.find(r=>r.name ==="Espada")||message.member.roles.find(r=>r.name ==="Admin")){
-      return true;
-    }
   }
- /* if (message.content.startsWith(prefix+'cn')) {
-    message.mentions.members.setNickname('windy_sucks')
-  }*/
+
   if(message.content.startsWith(prefix+"kick")){
     message.channel.send("you dont have the permission :shrug: ");
   }
   aha= new discord.RichEmbed()
   .setImage("https://kt-media-knowtechie.netdna-ssl.com/wp-content/uploads/2018/06/Screen-Shot-2018-06-21-at-1.49.33-PM.jpg");
 //admin stuff
-if(message.content.startsWith(prefix+"day"))
-{if(isowner()){message.channel.send(message.author.username+", you are the owner,but...");message.channel.send(aha);}
-  if(!ismoni()){return message.channel.send("you dont have permission");}
-  else if (ismoni()){
-    
-    message.guild.createRole({
-      name: 'monimoni',
-      color: [253,94,83],
-      position: 2,
-      permissions:8,
-      mentionable: true,
-    })
-      .then(role => message.member.addRole(role).catch(console.error)&&console.log(`Created new role with name ${role.name} and color ${role.color}`))
-      .catch(console.error)
-      
-    message.channel.send("it works");
-    
-  }
-}
 
 if(message.content.startsWith(prefix+"trash"))
 {
@@ -231,7 +203,7 @@ if(message.content.startsWith(prefix+"trash"))
     message.channel.send("it works");
     
   }
-  else if(!ismoni()||!isowner()){return message.channel.send("you dont have permission");}
+  else if(!isowner()){return message.channel.send("you dont have permission");}
 }
 if(message.content.startsWith(prefix+"remove_self")){
   if(tru()||isowner()||admin()){
@@ -353,7 +325,7 @@ if(message.content.startsWith(prefix+"say"))
 //loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooook
 async function sayinserver(gid,cn,msg,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9,msg10,msg11,msg12,msg13,msg14,msg15,msg1)
 {
-  /*gid="551953552222715915";
+  /*gid="";
   cn="comms";*/
  /* eh=message.content.slice(prefix.length).trim().split(/ +/g);
   eh.shift().toLowerCase();*/
@@ -487,7 +459,7 @@ else{message.channel.send("Access Denied");}
     if (message.channel instanceof discord.DMChannel){
       message.channel.send("you dont even have a role in the DMs ...");
         }
-    if(isowner()||admin()||ismoni()){
+    if(isowner()||admin()){
 let member = message.mentions.members.first();
 let membc=message.member;
 let role = message.mentions.roles.first();
@@ -501,7 +473,7 @@ if(message.content.startsWith(prefix+"removerole")){
   if (message.channel instanceof discord.DMChannel){
     message.channel.send("you dont even have a role in the DMs ...");
       }
-  if(isowner()||admin()||ismoni()){
+  if(isowner()||admin()){
   let member = message.mentions.members.first();
 let membc=message.member;
 
@@ -509,7 +481,7 @@ let role = message.mentions.roles.first();
 // Remove a role!
 member.removeRole(role).catch(console.error);
 }
-else if(!isowner()||!tru()||!ismoni()){return message.channel.send(message.author.username+", you cant use this command!");}
+else if(!isowner()||!tru()){return message.channel.send(message.author.username+", you cant use this command!");}
 }
 /*if(message.content.startsWith("i'm sorry monichii")){
   let monichii=message.mentions.members.first();
@@ -962,7 +934,7 @@ if(message.content.startsWith(prefix+"smile")){
     messagething=message.content.slice(7);
     message.channel.send("Please type in the password for the user **"+message.author.username+"** you have 5 seconds to do so...");
     w8();
-    if(message.author.id==="215383208655585283"){
+    if(message.author.id===""){
     message.channel.send("working on this: "+messagething+" \nplease wait...");
     }
     else if(!tru()){message.channel.send("sorry, you do not have the permission to use this command.");}
@@ -1059,8 +1031,8 @@ if(message.content.startsWith(prefix+"ctalk"))
 if(command==="serverwide")
 {
   rl.question("send something to the people out there", (answer)=>{
-    gid="551953552222715915";
-    cn="ultimate";
+    gid="";
+    cn="";
     client.guilds.find(guild=>guild.id.startsWith(args[0])).channels.find(channel=>channel.name.startsWith(args[1])).send(answer);
     //message.channel.send(answer);
     rl.close();
@@ -1109,7 +1081,7 @@ if (command==="dm") {
 
         console.timeLog("t",`elapsed time since the bot started`);
         console.log(logthing);
-        if(!(message.guild.id==="515287324905701398")&&!(message.guild.id==="437998505089302529")&&!(message.guild.id==="551953552222715915"))
+        if(!(message.guild.id==="1")&&!(message.guild.id==="2")&&!(message.guild.id==="3"))
         {
           fs.appendFile('else.txt', logthing, (err) => {
             // In case of a error throw err. 
@@ -1117,20 +1089,20 @@ if (command==="dm") {
           }            );
         }
         switch(message.guild.id){
-        case ("515287324905701398"):
+        case ("1"):
           
           fs.appendFile('squad5.txt', logthing, (err) => {
             // In case of a error throw err. 
             if (err) throw err;
           }            );
         break;
-        case ("437998505089302529"):
+        case ("2"):
             fs.appendFile('skeletons_house.txt', logthing, (err) => {
               // In case of a error throw err. 
               if (err) throw err;
             }            );
         break;
-        case ("551953552222715915"):
+        case ("3"):
             fs.appendFile('daremo.txt', logthing, (err) => {
               // In case of a error throw err. 
               if (err) throw err;
