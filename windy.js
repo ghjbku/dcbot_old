@@ -1,13 +1,15 @@
 const discord = require ('discord.js');
 var client = new discord.Client();
+const fetch = require('node-fetch')
 //var german = require("./commands/german.js");
 //var matek=require("./commands/math.js");
 //var windshit=require("./commands/windshit.js");
 //var sudo=require("./commands/sudo.js");
-const token = "put your discord token heree";
+token='';
+
 const Http = require('https');
 const fs = require('fs');
-const fetch = require("node-fetch");
+
 embedpic =new discord.RichEmbed()
 
 .setImage("https://cdn.discordapp.com/attachments/536880565832384512/542781049315524626/IMG_20190206_195754.png");
@@ -166,7 +168,7 @@ client.on("message", (message) => {
 if (message.author.bot) return;
 
 function admin()
-{if(message.author.id=="000"||message.author.id=="0001"||message.author.id=="0002")
+{if(message.author.id=="215383208655585283"||message.author.id=="0001"||message.author.id=="0002")
 return true;}
 
 function isowner() {
@@ -296,6 +298,21 @@ if(message.content.startsWith(prefix+"say"))
     message.channel.send(msg);
   }
 
+  else if(!tru()||!admin()||!isowner()){return message.delete(), message.channel.send(message.author.username+", no...JUST NO!");}
+  
+ }
+ function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+ 
+ if(message.content.startsWith(prefix+"shutdown"))
+{
+  if(isowner()||admin()||tru()){
+    message.channel.send("shutting down!");
+	message.delete();
+	sleep(200);
+	 process.exit(1);
+	}
   else if(!tru()||!admin()||!isowner()){return message.delete(), message.channel.send(message.author.username+", no...JUST NO!");}
   
  }
@@ -610,8 +627,11 @@ request({
   console.log(res.body);
 });*/
 
+fs.readFile('token.txt', 'utf-8', (err, data) => {
+    if (err) throw err;
+   client.login (data);
+  });
 
-client.login (token);
 client.on("message", (message)=> {
     msg = message.content.toLowerCase();
     if(message.author.bot) return;
