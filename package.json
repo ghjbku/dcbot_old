@@ -5,7 +5,8 @@
   "main": "windy.js",
   "dependencies": {
     "discord.js": "^11.6.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {},
   "scripts": {

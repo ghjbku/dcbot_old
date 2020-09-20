@@ -1,31 +1,18 @@
 const discord = require ('discord.js');
 var client = new discord.Client();
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
 //var german = require("./commands/german.js");
 //var matek=require("./commands/math.js");
 //var windshit=require("./commands/windshit.js");
 //var sudo=require("./commands/sudo.js");
-token='';
 
 const Http = require('https');
 const fs = require('fs');
+const { stringify } = require('querystring');
 
 embedpic =new discord.RichEmbed()
 
 .setImage("https://cdn.discordapp.com/attachments/536880565832384512/542781049315524626/IMG_20190206_195754.png");
-global.servers={};
-
-//const Commando = require('discord.js-commando');
-//const bot = new Commando.Client();
-/*const YTDL = require('ytdl-core');
-bot.registry.registerGroup('simple','Simple');
-bot.registry.registerGroup('music','Music');
-bot.registry.registerDefaults();
-bot.registry.registerCommandsIn(__dirname+ '/commands');
-global.servers={};*/
-
-
-
 smil1=new discord.RichEmbed()
 .setImage("https://media.giphy.com/media/ree8xCap5nHi/giphy.gif");
 smil2=new discord.RichEmbed()
@@ -158,21 +145,22 @@ console.log("\n\nServers:")
   client.guilds.forEach((guild) => {
       console.log(" - " + guild.name + " id: "+ guild.id)
   })
-client.user.setActivity ("w!help || w!invite", type="LISTENING");
+client.user.setActivity ("w!help || w!invite", type="Listening");
 });
 const prefix = "w!";
 
-
-
 client.on("message", (message) => {
 if (message.author.bot) return;
+
+const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
 
 function admin()
 {if(message.author.id=="215383208655585283"||message.author.id=="0001"||message.author.id=="0002")
 return true;}
 
 function isowner() {
-  if(message.author.id=="00011")
+  if(message.author.id=="215383208655585283")
   return true;
   else return false;}
 
@@ -187,6 +175,47 @@ function isowner() {
   aha= new discord.RichEmbed()
   .setImage("https://kt-media-knowtechie.netdna-ssl.com/wp-content/uploads/2018/06/Screen-Shot-2018-06-21-at-1.49.33-PM.jpg");
 //admin stuff
+
+function httpGet(theUrl)
+{
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+if(message.content.startsWith(prefix+"test_gist"))
+{
+  cmd = "test_gist";
+  var argumentums = message.content.slice(prefix.length+cmd.length).trim().split(/ +/g);
+  var gist_user = argumentums[0];
+  var gist_document = argumentums[1];
+  var got_gist = httpGet("https://api.github.com/users/"+gist_user+"/gists");
+  var tab_of_gist = got_gist.trim().split(',');
+
+    tab_of_gist.forEach(val=>{
+        if(val.startsWith('"files"'))
+        {
+         var index_of_files = tab_of_gist.findIndex(v=>v===val);
+         console.log(tab_of_gist[index_of_files+3]);
+          if (tab_of_gist[index_of_files+3].endsWith(gist_document+'"')){
+            the_url_helper = tab_of_gist[index_of_files+3].slice(tab_of_gist[index_of_files+3].search('https'));
+            the_url = the_url_helper.slice(0,the_url_helper.length-1);
+          }
+        } 
+       }
+    );
+    
+    message.channel.send("the url that has your file is: "+the_url);
+    fetch(the_url)
+  .then(response => response.text())
+  .then(data => {
+  	// Do something with your data
+  	console.log(data);
+  });
+}
+
 
 if(message.content.startsWith(prefix+"trash"))
 {
@@ -213,64 +242,6 @@ if(message.content.startsWith(prefix+"remove_self")){
   message.member.removeRole(deletename);}
   else{message.channel.send(message.author.username+", sorry, but you do not have permission to do that");}
 }
-const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-
-/*
-if(command==="tell")
-{
-  if(admin()||isowner())
-  {
-  msg=args[0];
-  let chan=message.guild.channels.find("name", msg);
-  let msg2=args[1];
-  let msg3=args[2];
-  let msg4=args[3];
-  let msg5=args[4];
-  // let msg2 = message.content.slice(args[0].length+10);
-  //msg2=message.content.slice(12);
- // generalChannel = client.channels.get(msg.id);
- message.delete();
- chan.send(msg5);
-  if(msg5===null)
-  {
-    if(msg4===null)
-    {
-      if(!msg3===null)
-      {
-       chan.send(msg2+" "+msg3);
-      }
-
-      else if(msg3===null)
-      {
-      chan.send(msg2);
-      }
-    }
-    else if(!msg4===null)
-    {
-     if(!msg3===null)
-     {
-      chan.send(msg2+" "+msg3+" "+msg4);
-     }
-
-     else if(msg3===null)
-     {
-     chan.send(msg2);
-     }
-    }
-}
-else if(!msg5===null)
-{
-    chan.send(msg2+" "+msg3+" "+msg4+" "+msg5);
-}
-  
-else{chan.send(msg2);}
-}
-  else
-  {
-    message.channel.send(message.author.username+", sorry, but you do not have permission to do that");
-  }
-}*/
 
 if(message.content.startsWith(prefix+"purge" )){
   if (isowner()||admin()){let messagecount = message.content.slice(7);
