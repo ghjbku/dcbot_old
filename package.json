@@ -5,12 +5,19 @@
   "main": "windy.js",
   "dependencies": {
     "discord.js": "^11.6.4",
+    "fs": "0.0.1-security",
+    "graceful-fs": "^4.2.2",
     "node-fetch": "^2.6.1",
+    "webshot": "^0.18.0",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {},
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "test": "w!help"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,9 @@ const fetch = require('node-fetch');
 
 const Http = require('https');
 const fs = require('fs');
+const webshot = require('webshot');
 const { stringify } = require('querystring');
+const { finished } = require('stream');
 
 embedpic =new discord.RichEmbed()
 
@@ -191,6 +193,7 @@ if(message.content.startsWith(prefix+"test_gist"))
   var argumentums = message.content.slice(prefix.length+cmd.length).trim().split(/ +/g);
   var gist_user = argumentums[0];
   var gist_document = argumentums[1];
+  times = null;
   var got_gist = httpGet("https://api.github.com/users/"+gist_user+"/gists");
   var tab_of_gist = got_gist.trim().split(',');
 
@@ -202,18 +205,76 @@ if(message.content.startsWith(prefix+"test_gist"))
           if (tab_of_gist[index_of_files+3].endsWith(gist_document+'"')){
             the_url_helper = tab_of_gist[index_of_files+3].slice(tab_of_gist[index_of_files+3].search('https'));
             the_url = the_url_helper.slice(0,the_url_helper.length-1);
+            the_last = the_url.slice(0,the_url.search('/raw/'));
           }
         } 
        }
     );
-    
-    message.channel.send("the url that has your file is: "+the_url);
+
     fetch(the_url)
   .then(response => response.text())
   .then(data => {
-  	// Do something with your data
-  	console.log(data);
+    console.log(data.split(/\r\n|\r|\n/).length);
+    times = ((data.split(/\r\n|\r|\n/).length)/100)*2;
+    console.log(times);
+    capture_image(the_last,"screenshot",message,times);
   });
+}
+
+function capture_image(url,name,message,times){
+  for (let index = 0; index < times; index++) {
+    var h = 1600;
+    var t = 1200 * (index*1.3);
+    optionsSelector = {
+      shotSize:
+              {
+                width: 'window',
+                height: h
+              },
+    shotOffset: 
+              {
+                left: 0,
+                right: 0,
+                top: t,
+                bottom: 0 
+              }
+    };
+
+    webshot(url,name+index+".png",optionsSelector, function(err){
+      if (err) {console.log(err);}
+    });
+  }
+  setTimeout(function(){set_image(message,name,times);},6000);
+}
+
+function send_img(message,filez){
+  message.channel.send({
+    files:filez
+  })
+    .catch(console.error);
+}
+
+function set_image(message,name,times){
+  filez = [];
+    for (let index = 0; index < times; index++) {
+      filez[index] = {
+        attachment: './'+name+index+'.png',
+        name: name+index+'.png'
+      }
+    }
+
+    send_img(message,filez);
+
+    setTimeout(function(){
+      for (index2 = 0; index2 <= times; index2++){
+      try {
+        if (index2 >= 1){
+        fs.unlinkSync('./'+name+(index2-1)+'.png')}
+        //file removing
+      } catch(err) {
+        console.error(err)
+      }
+    };},6000);
 }
 
 
