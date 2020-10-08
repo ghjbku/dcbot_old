@@ -7,6 +7,7 @@
     "discord.js": "^11.6.4",
     "fs": "0.0.1-security",
     "graceful-fs": "^4.2.2",
+    "lua-in-js": "^2.2.0",
     "node-fetch": "^2.6.1",
     "webshot": "^0.18.0",
     "xmlhttprequest": "^1.8.0"
