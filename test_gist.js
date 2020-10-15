@@ -154,7 +154,7 @@ client.on("message", (message) => {
     if(message.content.startsWith(prefix+"log")){
     var cmd = "log";
     var args = message.content.slice(prefix.length+cmd.length).trim().split(/ +/g);
-        if (args[0]==="token.txt"){
+        if (args[0]==="token.json"){
             message.channel.send("unreachable!");
             return;};
         message.channel.send("writing from file...");
