@@ -1,11 +1,6 @@
 const discord = require ('discord.js');
 var client = new discord.Client();
 const fetch = require('node-fetch');
-//var german = require("./commands/german.js");
-//var matek=require("./commands/math.js");
-//var windshit=require("./commands/windshit.js");
-//var sudo=require("./commands/sudo.js");
-
 const Http = require('https');
 const fs = require('fs');
 const webshot = require('webshot');
@@ -659,10 +654,11 @@ request({
   console.log(res.body);
 });*/
 
-fs.readFile('token.txt', 'utf-8', (err, data) => {
-    if (err) throw err;
-   client.login (data);
-  });
+let json = require('./token.json');
+var token_helper = JSON.stringify(json).split(":")[1].substr(1);
+
+  client.login (`${token_helper.substring(0,token_helper.length-2)}`);
+
 
 client.on("message", (message)=> {
     msg = message.content.toLowerCase();

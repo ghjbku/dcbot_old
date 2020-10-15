@@ -8,10 +8,10 @@ const webshot = require('webshot');
 const luainjs = require('lua-in-js');
 const luaEnv = luainjs.createEnv();
 
-fs.readFile('token.txt', 'utf-8', (err, data) => {
-    if (err) throw err;
-   client.login (data);
-  });
+let json = require('./token.json');
+var token_helper = JSON.stringify(json).split(":")[1].substr(1);
+
+  client.login (`${token_helper.substring(0,token_helper.length-2)}`);
 
 client.on('ready', () => {
   console.time("t");
