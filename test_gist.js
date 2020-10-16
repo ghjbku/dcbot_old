@@ -24,6 +24,12 @@ console.log("\n\nServers:")
 client.on("message", (message) => {
     if (message.author.bot) return;
 
+    if(message.content.startsWith(prefix+"invite"))
+    {
+      message.author.sendMessage ("https://discordapp.com/oauth2/authorize?&client_id=542665110724935681&scope=bot&permissions=8");
+      message.channel.send("invite link sent to your DMs");
+    }
+
     function httpGet(theUrl)
     {
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
