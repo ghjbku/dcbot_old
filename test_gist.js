@@ -167,5 +167,18 @@ client.on("message", (message) => {
       message.channel.send("done");
       }
 
+      if(message.content.startsWith(prefix+"test")){
+        const test = require('./test.js');
+
+        const person = {
+            name : "John John John Doe",
+            nationality : "american",
+            birthDate : '1999-12-13',
+            phone : "+36 90 1234567",
+            email : "john@doe.com",
+        }
+        test.test(person.name,message);
+      }
+      
 
 })
