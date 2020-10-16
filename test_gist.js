@@ -168,7 +168,7 @@ client.on("message", (message) => {
       }
 
       if(message.content.startsWith(prefix+"test")){
-        const test = require('./test.js');
+        const test = require('./test_module.js');
 
         const person = {
             name : "John John John Doe",
