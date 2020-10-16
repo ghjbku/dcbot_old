@@ -5,8 +5,6 @@ const fetch = require('node-fetch');
 const prefix = "w!";
 const fs = require('fs');
 const webshot = require('webshot');
-const luainjs = require('lua-in-js');
-const luaEnv = luainjs.createEnv();
 
 let json = require('./token.json');
 var token_helper = JSON.stringify(json).split(":")[1].substr(1);
@@ -122,7 +120,6 @@ client.on("message", (message) => {
                 name: name+index+'.png'
             }
         }
-
         send_img(message,filez);
 
         setTimeout(function(){
@@ -148,7 +145,6 @@ client.on("message", (message) => {
                 },1000);
             },2000);
         }) 
-            
     }
 
     if(message.content.startsWith(prefix+"log")){
