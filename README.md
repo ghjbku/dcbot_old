@@ -9,3 +9,7 @@ create token.json in the downloaded folder(where the .js file is) and put your d
 "token" : "asd.asd.asd"
 }
 ```
+
+# test_gist.js
+will get the github gist that was given as argument and send the gist back as picture(s)
+![gif of it working](asd.gif)
