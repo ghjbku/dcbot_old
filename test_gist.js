@@ -5,8 +5,6 @@ const fetch = require('node-fetch');
 const prefix = "w!";
 const fs = require('fs');
 const webshot = require('webshot');
-const luainjs = require('lua-in-js');
-const luaEnv = luainjs.createEnv();
 
 let json = require('./token.json');
 var token_helper = JSON.stringify(json).split(":")[1].substr(1);
@@ -25,6 +23,12 @@ console.log("\n\nServers:")
 
 client.on("message", (message) => {
     if (message.author.bot) return;
+
+    if(message.content.startsWith(prefix+"invite"))
+    {
+      message.author.sendMessage ("https://discordapp.com/oauth2/authorize?&client_id=542665110724935681&scope=bot&permissions=8");
+      message.channel.send("invite link sent to your DMs");
+    }
 
     function httpGet(theUrl)
     {
@@ -122,7 +126,6 @@ client.on("message", (message) => {
                 name: name+index+'.png'
             }
         }
-
         send_img(message,filez);
 
         setTimeout(function(){
@@ -148,7 +151,6 @@ client.on("message", (message) => {
                 },1000);
             },2000);
         }) 
-            
     }
 
     if(message.content.startsWith(prefix+"log")){
@@ -165,5 +167,18 @@ client.on("message", (message) => {
       message.channel.send("done");
       }
 
+      if(message.content.startsWith(prefix+"test")){
+        const test = require('./test_module.js');
+
+        const person = {
+            name : "John John John Doe",
+            nationality : "american",
+            birthDate : '1999-12-13',
+            phone : "+36 90 1234567",
+            email : "john@doe.com",
+        }
+        test.test(person.name,message);
+      }
+      
 
 })
