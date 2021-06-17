@@ -4,9 +4,11 @@
   "description": "gitbot",
   "main": "windy.js",
   "dependencies": {
-    "discord.js": "^11.6.4",
+    "crypto-js": "^4.0.0",
+    "discord.js": "^12.5.3",
     "fs": "0.0.1-security",
-    "graceful-fs": "^4.2.2",
+    "graceful-fs": "^4.2.4",
+    "js-sha1": "^0.6.0",
     "lua-in-js": "^2.2.0",
     "node-fetch": "^2.6.1",
     "webshot": "^0.18.0",
@@ -18,7 +20,7 @@
     "test": "w!help"
   },
   "resolutions": {
-    "graceful-fs": "^4.2.2"
+    "graceful-fs": "^4.2.4"
   },
   "repository": {
     "type": "git",
