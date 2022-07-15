@@ -11,7 +11,7 @@
     "graceful-fs": "^4.2.4",
     "js-sha1": "^0.6.0",
     "lua-in-js": "^2.2.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "webshot": "^0.18.0",
     "xmlhttprequest": "^1.8.0"
   },
