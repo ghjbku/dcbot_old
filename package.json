@@ -2,10 +2,11 @@
   "name": "dcbot-master",
   "version": "1.0.0",
   "description": "gitbot",
-  "main": "windy.js",
+  "main": "new_windy.js",
   "dependencies": {
     "crypto-js": "^4.0.0",
     "discord.js": "^12.5.3",
+    "express": "^4.18.1",
     "fs": "0.0.1-security",
     "graceful-fs": "^4.2.4",
     "js-sha1": "^0.6.0",
@@ -17,6 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
+    "start": "node new_windy.js",
     "test": "w!help"
   },
   "resolutions": {

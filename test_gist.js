@@ -6,18 +6,27 @@ const prefix = "w!";
 const fs = require('fs');
 const webshot = require('webshot');
 
-let json = require('./token.json');
+const readline = require('readline');
+const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+/*let json = require('./token.json');
 var token_helper = JSON.stringify(json).split(":")[1].substr(1);
 
-  client.login (`${token_helper.substring(0,token_helper.length-2)}`);
+  client.login (`${token_helper.substring(0,token_helper.length-2)}`);*/
+
+rl.question("write your token here to start the bot: ", (answer)=>{
+   
+    client.login(answer);
+    rl.close();
+  });
 
 client.on('ready', () => {
   console.time("t");
 
 console.log("\n\nServers:")
-  client.guilds.forEach((guild) => {
-      console.log(" - " + guild.name + " id: "+ guild.id)
-  })
   client.user.setActivity (prefix+"help || "+prefix+"invite", {type: "LISTENING"});
 });
 
