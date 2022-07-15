@@ -1,5 +1,5 @@
 const discord = require('discord.js');
-var client = new discord.Client();
+var client = new discord.Client(542665110724935681);
 const prefix = "w!";
 const commands = require('./commands_module.js');
 var limited = false;
@@ -50,9 +50,10 @@ function on_mention_reply() {
 }
 
 client.login(process.env.TOKEN);
-
+console.log('logging in');
 
 client.on('ready', () => {
+  console.log('client ready');
   client.user.setActivity(prefix + "help || " + prefix + "invite", { type: "LISTENING" });
   commands.init(client);
 });
